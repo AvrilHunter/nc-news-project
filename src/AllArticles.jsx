@@ -1,20 +1,25 @@
-import ArticleThumbnail from "./Article-thumbnail"
+import ArticleThumbnail from "./Article-thumbnail";
+import { getAllArticles } from "../apis";
 
-import { useState } from "react"
+import { useEffect, useState } from "react";
 
 function AllArticles() {
-
-const [allArticles, setAllArticles] = useState([])
+    const [allArticles, setAllArticles] = useState([]);
     
+    useEffect(() => {
+      getAllArticles().then(({articles}) => {
+        setAllArticles(articles)
+      });
+    }, []);
 
+  return (
+    <div className="flex">
+          {allArticles.map((article) => {
+            return(
+                <ArticleThumbnail article={article} key = {article.article_id} />)
+     })}
+    </div>
+  );
+}
 
-return (
-<div className="flex">
-    <ArticleThumbnail />
-    <ArticleThumbnail />
-    <ArticleThumbnail />
-</div>
-)
-    }
-
-export default AllArticles
+export default AllArticles;
