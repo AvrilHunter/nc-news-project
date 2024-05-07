@@ -1,14 +1,18 @@
 import './App.css'
-import AllArticles from "./AllArticles"
+import { Routes, Route } from "react-router-dom";
 
+import AllArticles from "./AllArticles"
+import Header from './Header';
 
 
 function App() {
   return (
     <>
-      <h1 className = "header">NC News</h1>
-      <AllArticles />
-    </>
+      <Header/>
+      <Routes>
+        <Route path="/" element={<AllArticles/>}/>
+      </Routes>
+      </>
   );
 }
 
