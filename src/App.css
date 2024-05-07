@@ -14,8 +14,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .articleThumbnail{
@@ -23,33 +22,47 @@
  background-color: white;
  font-size: 1em;
  width: 300px;
- text-decoration: none;
  list-style-type: none;
+ display:grid;
+ grid-template: auto auto auto auto/auto auto;
 }
 
-.articleThumbnail:link{
+a:link{
   color: #264653;
+  text-decoration: none;
 }
 
-.articleThumbnail:visited{
+a:visited{
   color: #264653;
 }
 
 .articleImage{
   width: 100%;
   border-radius: 5px;
+  grid-area: 1/1/2/span 2;
 }
+
+.articleImageSingle{
+  width:100%;
+  border-radius: 5px;
+}
+
+.title{
+   grid-area: 2/1/3/span 2;
+}
+
 
 h1{
   background-color: #264653;
-  color: white;
+  color:#DE541E;
   font-size: 2em;
   border-radius: 10px;
+  text-align: center;
 }
 
 .buttonDesign{
-  color:white;
-  background-color: #DE541E;
+  color:#264653;
+  background-color: #2A9D8F;
   cursor: pointer;
   box-shadow: 5px 5px 5px #E9C46A;
   border : none;
@@ -80,7 +93,21 @@ h1{
 
 #flex-header{
   display:flex;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 20px;
   text-decoration: none;
+}
+
+.comment-card{
+  border: 2px solid #2A9D8F;
+  border-radius: 5px;
+}
+
+.comments-section{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 5px;
 }

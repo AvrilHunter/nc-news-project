@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../apis";
 import Loading from "./Loading";
-import formatDate from "./utils/utils";
+import Comments from "./Comments";
+import Error from "./Error";
 
 
 function SingleArticle() {
     const { article_id } = useParams()
     const [article, setArticle] = useState({})
-    const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
    
 
     useEffect(() => {
@@ -18,7 +20,7 @@ function SingleArticle() {
           setLoading(false);
         })
         .catch((err) => {
-          console.log(err);
+          setError({err})
         });
     }, [])
 
@@ -28,17 +30,20 @@ function SingleArticle() {
       return <Loading />;
     }
   
+  if(error){return <Error/>}
+  
     return (
-      <>
-        <img className="articleImage" src={article_img_url} alt={title} />
+      <div className="singlePage">
+        <img className="articleImageSingle" src={article_img_url} alt={title} />
         <h2 className="title">{title}</h2>
+        <p className="body">{body}</p>
         <p className="author">Author: {author}</p>
         <p className="topic"> Topic: {topic}</p>
-        <p className="body">{body}</p>
         <p className="votes">Votes: {votes}</p>
+        <p className="date">Date posted: {created_at}</p>
         <p className="comment_count">Comments: {comment_count}</p>
-        <p className="date">Date posted: {formatDate(created_at)}</p>
-      </>
+        <Comments article_id={article_id} />
+      </div>
     );
 }
 

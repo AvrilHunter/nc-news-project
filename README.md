@@ -18,3 +18,4 @@ Make hover work for the links to show them as a different thing.
 When click back from /articles/id should go to the all articles page
 
 
+Make default comments 5 returning not 10
