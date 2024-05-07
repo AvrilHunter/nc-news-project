@@ -14,3 +14,7 @@ https://coolors.co/264653-2a9d8f-e9c46a-f4a261-e76f51-de541e
 https://www.wix.com/studio/blog/font-size#:~:text=Body%20text%20%2D%20Font%20sizes%20should,can%20be%20pleasant%20to%20read.
 
 
+Make hover work for the links to show them as a different thing. 
+When click back from /articles/id should go to the all articles page
+
+
