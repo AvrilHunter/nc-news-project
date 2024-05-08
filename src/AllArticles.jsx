@@ -3,21 +3,29 @@ import { getAllArticles } from "../apis";
 import { useEffect, useState } from "react";
 import Loading from "./Loading"
 import Error from "./Error";
+import { useSearchParams } from "react-router-dom";
 
-function AllArticles() {
+function AllArticles({ topic }) {
+  
   const [allArticles, setAllArticles] = useState([]);
   const [loading, setLoading] = useState(true)
-   const [error, setError] = useState(null);
-   
-    
-    useEffect(() => {
-      getAllArticles().then(({articles}) => {
-        setAllArticles(articles)
-        setLoading(false)
-      }).catch((err) => {
+  const [error, setError] = useState(null);
+  const [searchParams] = useSearchParams()
+
+  useEffect(() => {  
+    const topic = searchParams.get("topic");
+    let params = { params: {} }
+    topic === "all" ? null : params.params = { topic: topic } 
+    setLoading(true)
+    getAllArticles(params).then(({ articles }) => {
+      setAllArticles(articles)
+     setLoading(false);
+
+    }).catch((err) => {
+        setLoading(false);
         setError({ err });
       })
-    }, []);
+    }, [topic]);
   
   if (loading) { return <Loading /> }
   

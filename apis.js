@@ -1,12 +1,11 @@
 import axios from "axios"
 import formatDate from "./src/utils/utils"
 
-export const getAllArticles = () => {
-  return axios.get("https://nc-news-z2fk.onrender.com/api/articles").then(({ data }) => {
+export const getAllArticles = (params) => {
+  return axios.get("https://nc-news-z2fk.onrender.com/api/articles",params).then(({ data }) => {
     data.articles.forEach((article) => {
       article.created_at = formatDate(article.created_at)
     })
-   
     return data
   })
 }
@@ -51,4 +50,13 @@ export const deleteComment = (id) => {
   return axios.delete(`https://nc-news-z2fk.onrender.com/api/comments/${id}`).then((data) => {
       return data;
   })
+}
+
+export const getTopics = () => {
+  
+  return axios
+    .get(`https://nc-news-z2fk.onrender.com/api/topics`)
+    .then(({data:{topics}}) => {
+      return topics;
+    });
 }
