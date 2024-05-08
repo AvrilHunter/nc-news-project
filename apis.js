@@ -28,3 +28,13 @@ export const getCommentsByArticle = (id) => {
     return data;
     });
 }
+
+export const updateVotesByArticle = (id, vote) => {
+  const body = { inc_votes: vote }
+  return axios.patch(
+    `https://nc-news-z2fk.onrender.com/api/articles/${id}`, body
+  ).then(({ data: { article } }) => {
+    article.created_at = formatDate(article.created_at)
+    return article
+  })
+}
