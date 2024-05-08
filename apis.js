@@ -6,10 +6,10 @@ export const getAllArticles = () => {
     data.articles.forEach((article) => {
       article.created_at = formatDate(article.created_at)
     })
+   
     return data
   })
 }
-
 
 export const getArticleById = (id) => {
   return axios.get(`https://nc-news-z2fk.onrender.com/api/articles/${id}`).then(({ data: { article } }) => {
@@ -25,7 +25,7 @@ export const getCommentsByArticle = (id) => {
     data.comments.forEach((comment) => {
       comment.created_at = formatDate(comment.created_at);
     });
-    return data;
+    return data.comments;
     });
 }
 
@@ -36,5 +36,13 @@ export const updateVotesByArticle = (id, vote) => {
   ).then(({ data: { article } }) => {
     article.created_at = formatDate(article.created_at)
     return article
+  })
+}
+
+export const postCommentByArticle = (body, id) => {
+  return axios.post(`https://nc-news-z2fk.onrender.com/api/articles/${id}/comments`, body)
+    .then(({ data: { comment } }) => {
+      comment.created_at = formatDate(comment.created_at);
+      return comment
   })
 }
