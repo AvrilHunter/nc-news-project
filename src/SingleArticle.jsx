@@ -50,7 +50,7 @@ function SingleArticle() {
         }
         <p className="date">Date posted: {created_at}</p>
         <p className="comment_count">Comments: {comment_count}</p>
-        <Comments article_id={article_id} />
+        <Comments article_id={article_id} article={article} setArticle={setArticle} />
       </div>
     );
 }

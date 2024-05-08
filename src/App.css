@@ -123,3 +123,7 @@ h1{
 .inline-block{
   display: inline-block;
 }
+
+.hiddenButton{
+  display: none;
+}

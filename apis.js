@@ -46,3 +46,9 @@ export const postCommentByArticle = (body, id) => {
       return comment
   })
 }
+
+export const deleteComment = (id) => {
+  return axios.delete(`https://nc-news-z2fk.onrender.com/api/comments/${id}`).then((data) => {
+      return data;
+  })
+}
