@@ -70,6 +70,9 @@ h1{
   border-radius: 5px;
   align-self: center;
 }
+.buttonUsed{
+ color:#DE541E;
+}
 
 /* 
 @media screen and (min-width: 601px) {
@@ -110,4 +113,8 @@ h1{
   gap: 10px;
   justify-content: center;
   padding: 5px;
+}
+
+.inline-block{
+  display: inline-block;
 }

@@ -4,14 +4,14 @@ import { getArticleById } from "../apis";
 import Loading from "./Loading";
 import Comments from "./Comments";
 import Error from "./Error";
+import Votes from "./Votes";
 
 
 function SingleArticle() {
-    const { article_id } = useParams()
-    const [article, setArticle] = useState({})
+  const { article_id } = useParams()
+  const [article, setArticle] = useState({})
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-   
 
     useEffect(() => {
       getArticleById(article_id)
@@ -39,7 +39,15 @@ function SingleArticle() {
         <p className="body">{body}</p>
         <p className="author">Author: {author}</p>
         <p className="topic"> Topic: {topic}</p>
-        <p className="votes">Votes: {votes}</p>
+        {
+          <Votes
+            className="votes"
+            votes={votes}
+            setArticle={setArticle}
+            article = {article}
+            article_id
+            ={article_id} />
+        }
         <p className="date">Date posted: {created_at}</p>
         <p className="comment_count">Comments: {comment_count}</p>
         <Comments article_id={article_id} />

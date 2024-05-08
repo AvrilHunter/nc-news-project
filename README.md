@@ -19,3 +19,7 @@ When click back from /articles/id should go to the all articles page
 
 
 Make default comments 5 returning not 10
+
+
+Click Up Vote - change state to yes for upvoted.
+Click Up Vote again - changes back to -1. change state to allow again
