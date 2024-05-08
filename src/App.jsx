@@ -5,17 +5,19 @@ import AllArticles from "./AllArticles"
 import Header from './Header';
 import SingleArticle from './SingleArticle';
 import Error from "./Error"
-
+import { UserProvider } from "../context/UserContext";
 
 function App() {
   return (
     <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<AllArticles />} />
-        <Route path="/articles/:article_id" element={<SingleArticle />} />
-        <Route path="*" element={<Error/>} />
-      </Routes>
+      <UserProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<AllArticles />} />
+          <Route path="/articles/:article_id" element={<SingleArticle />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </UserProvider>
     </>
   );
 }

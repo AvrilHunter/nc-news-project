@@ -4,6 +4,7 @@ import Loading from "./Loading";
 import { useState } from "react";
 import CommentCard from "./CommentCard";
 import Expandable from "./Expandable";
+import NewComment from "./NewComment";
 
 function Comments({article_id}) {
     const [comments, setComments] = useState([])
@@ -11,7 +12,7 @@ function Comments({article_id}) {
     const [error, setError] = useState(null);
    
     useEffect(() => {
-        getCommentsByArticle(article_id).then(({comments}) => {
+        getCommentsByArticle(article_id).then((comments) => {
             setComments(comments)
             setLoading(false);
         }).catch((err) => {
@@ -29,6 +30,7 @@ function Comments({article_id}) {
   
     return (
       <Expandable>
+        <NewComment article_id={article_id} setComments={setComments} comments={comments} />
         <ul className = "comments-section">
           {comments.map((comment) => {
             return <CommentCard comment={comment} key={comment.comment_id}/>;
