@@ -1,5 +1,12 @@
-function Error() {
-    return <h3>We are sorry, something went wrong...</h3>
+function Error({ errMsg, errStatus }) {
+
+  return (
+    <>
+      <p>
+        {errStatus}: {errMsg}
+      </p>
+    </>
+  );
 }
 
-export default Error
+export default Error;

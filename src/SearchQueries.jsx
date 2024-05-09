@@ -1,32 +1,22 @@
-import { useState } from "react";
-import Loading from "./styleFunctionComponents/Loading";
-import Error from "./styleFunctionComponents/Error";
 import { useSearchParams } from "react-router-dom";
 
 function SearchQueries() {
-  const [loading, setLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams({});
-  const [error, setError] = useState(null);
-  // const [sortBy, setSortBy] = useState("date");
-  //const [order, setOrder] = useState("asc");
 
   const onSortChangeHandler = (event) => {
-    const currentParams = Object.fromEntries([...searchParams]);
-    currentParams.sort_by = event.target.value
-    setSearchParams(currentParams)
-    console.log(currentParams);
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("sort_by", event.target.value);
+    setSearchParams(newParams);
   };
 
   const onOrderChangeHandler = (event) => {
-        const currentParams = Object.fromEntries([...searchParams]);
-        currentParams.order = event.target.value;
-        setSearchParams(currentParams);
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("order", event.target.value);
+    setSearchParams(newParams);
   };
 
-  //check loading and errors
   //force some errors.
   //should only be available on the main screen
-  //need to work together and not seperately.
 
   return (
     <>

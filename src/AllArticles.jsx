@@ -7,26 +7,29 @@ import { useSearchParams } from "react-router-dom";
 import SortQueries from "./SearchQueries";
 import TopicSearch from "./TopicSearch";
 
-function AllArticles({ topic, setTopic }) {
+function AllArticles({ setTopic }) {
   const [allArticles, setAllArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [errMsg, setErrMsg] = useState("");
+  const [errStatus, setErrStatus] = useState("");
   
 
   useEffect(() => {
     const currentParams = Object.fromEntries([...searchParams]);
-    setSearchParams(currentParams)  
-    const axiosParams = {params: currentParams}
     setLoading(true);
-    getAllArticles(axiosParams)
+    getAllArticles(currentParams)
       .then(({ articles }) => {
         setAllArticles(articles);
         setLoading(false);
       })
       .catch((err) => {
+         console.log("am I in the catch block - all articles?");
         setLoading(false);
-        setError({ err });
+        setError(true)
+        setErrMsg(err.response.data.message);
+        setErrStatus(err.response.status);
       });
   }, [searchParams]);
 
@@ -35,14 +38,14 @@ function AllArticles({ topic, setTopic }) {
   }
 
   if (error) {
-    return <Error />;
+    return <Error errMsg={errMsg} errStatus={errStatus}/>;
   }
 
   return (
     <>
       <div className="flex">
         <SortQueries />
-        <TopicSearch topic={topic} setTopic={setTopic} />
+        <TopicSearch setTopic={setTopic} />
       </div>
       <ul className="flex">
         {allArticles.map((article) => {

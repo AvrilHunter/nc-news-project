@@ -12,6 +12,8 @@ function SingleArticle() {
   const [article, setArticle] = useState({})
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [errMsg, setErrMsg] = useState("")
+   const [errStatus, setErrStatus] = useState("");
 
     useEffect(() => {
       getArticleById(article_id)
@@ -20,7 +22,10 @@ function SingleArticle() {
           setLoading(false);
         })
         .catch((err) => {
-          setError({err})
+          setLoading(false)
+          setErrMsg(err.response.data.message)
+          setErrStatus(err.response.status);
+          setError(true)
         });
     }, [])
 
@@ -30,7 +35,7 @@ function SingleArticle() {
       return <Loading />;
     }
   
-  if(error){return <Error/>}
+  if (error) { return <Error errMsg={errMsg} errStatus={errStatus} />}
   
     return (
       <div className="singlePage">
@@ -42,15 +47,13 @@ function SingleArticle() {
         {
           <Votes
             className="votes"
-            votes={votes}
             setArticle={setArticle}
             article = {article}
-            article_id
-            ={article_id} />
+            />
         }
         <p className="date">Date posted: {created_at}</p>
         <p className="comment_count">Comments: {comment_count}</p>
-        <Comments article_id={article_id} article={article} setArticle={setArticle} />
+        <Comments article={article} setArticle={setArticle} />
       </div>
     );
 }
