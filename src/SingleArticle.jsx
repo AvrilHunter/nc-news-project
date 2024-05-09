@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../apis";
-import Loading from "./Loading";
 import Comments from "./Comments";
-import Error from "./Error";
 import Votes from "./Votes";
+import Loading from "./styleFunctionComponents/Loading";
+import Error from "./styleFunctionComponents/Error";
 
 
 function SingleArticle() {

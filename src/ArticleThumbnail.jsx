@@ -9,6 +9,7 @@ function ArticleThumbnail({ article }) {
     article_img_url,
     created_at,
     article_id,
+    comment_count
   } = article;
   return (
     <Link to={`/articles/${article_id}`}>
@@ -19,6 +20,7 @@ function ArticleThumbnail({ article }) {
         <p className="topic"> Topic: {topic}</p>
         <p className="votes">Votes: {votes}</p>
         <p className="date">Date posted: {created_at}</p>
+        <p className="comment count">Comment Count: {comment_count}</p>
       </li>
     </Link>
   );

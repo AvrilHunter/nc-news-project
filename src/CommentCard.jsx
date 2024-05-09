@@ -1,8 +1,8 @@
-import { useContext , useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
-import { deleteComment } from "../apis"
+import { deleteComment } from "../apis";
 import { getCommentsByArticle } from "../apis";
-import Loading from "./Loading";
+import Loading from "./styleFunctionComponents/Loading";
 
 function CommentCard({ comment, setComments, article, setArticle }) {
   const user = useContext(UserContext);
@@ -27,13 +27,16 @@ function CommentCard({ comment, setComments, article, setArticle }) {
       })
       .then((comments) => {
         setComments(comments);
-        const newArticle = { ...article, comment_count: article.comment_count - 1 }
-        setArticle(newArticle)
+        const newArticle = {
+          ...article,
+          comment_count: article.comment_count - 1,
+        };
+        setArticle(newArticle);
         setLoading(false);
       })
       .catch((err) => {
         setError({ err });
-        }) 
+      });
   };
 
   const { votes, created_at, author, body } = comment;
@@ -45,7 +48,7 @@ function CommentCard({ comment, setComments, article, setArticle }) {
   if (error) {
     return <Error />;
   }
-    
+
   return (
     <section className="comment-card">
       <p>{body}</p>

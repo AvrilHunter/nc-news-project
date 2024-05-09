@@ -1,9 +1,9 @@
 import { useLottie } from "lottie-react";
-import loadingAnimation from "./assets/loadingAnimation.json"
+import loadingAnimation from "../assets/loadingAnimation.json";
 
 function Loading() {
   const options = {
-     animationData: loadingAnimation,
+    animationData: loadingAnimation,
     loop: true,
   };
 

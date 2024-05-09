@@ -1,6 +1,6 @@
 import { updateVotesByArticle } from "../apis";
-import Error from "./Error";
 import { useState } from "react";
+import Error from "./styleFunctionComponents/Error";
 
 function Votes({ votes, setArticle, article_id, article }) {
 
