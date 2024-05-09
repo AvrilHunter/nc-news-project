@@ -22,5 +22,8 @@ Make default comments 5 returning not 10
 
 When you post a comment, it returns with the box highlighted red, or optimisitically renders as greyscale then changes to bright when released.
 
+Comments - don't need tos sent Article ID as a variable  can see this from the article state being sent. 
 
+
+How to get the sort by to stay as originally selected 
 

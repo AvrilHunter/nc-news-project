@@ -3,29 +3,30 @@ import { UserContext } from "../context/UserContext";
 import { postCommentByArticle } from "../apis";
 import CommentCard from "./CommentCard";
 
-function NewComment({ article_id , setComments, comments}) {
+function NewComment({ article_id, setComments, comments }) {
   const user = useContext(UserContext);
   const [newComment, setNewComment] = useState({
     username: user,
     body: "",
   });
 
-  const [buttonDisabled, setButtonDisabled]=useState(false)
-
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setButtonDisabled(true)
+    setButtonDisabled(true);
     if (newComment.body !== "") {
       postCommentByArticle(newComment, article_id).then((newComment) => {
-        setComments([newComment, ...comments])
+        setComments([newComment, ...comments]);
         setNewComment({
           username: user,
           body: "",
-        })
-          setButtonDisabled(false);
-      })
-    }else{setButtonDisabled(false)}
+        });
+        setButtonDisabled(false);
+      });
+    } else {
+      setButtonDisabled(false);
+    }
   };
 
   return (

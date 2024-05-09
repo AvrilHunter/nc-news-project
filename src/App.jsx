@@ -1,11 +1,9 @@
 import './App.css'
 import { Routes, Route } from "react-router-dom";
 import { useState } from 'react';
-
 import AllArticles from "./AllArticles"
 import Header from './Header';
 import SingleArticle from './SingleArticle';
-import Error from "./Error"
 import { UserProvider } from "../context/UserContext";
 
 function App() {
@@ -15,9 +13,9 @@ function App() {
   return (
     <>
       <UserProvider>
-        <Header setTopic={setTopic} />
+        <Header/>
         <Routes>
-          <Route path="/" element={<AllArticles topic={topic} />} />
+          <Route path="/" element={<AllArticles topic={topic} setTopic={setTopic} />} />
           <Route path="/articles/:article_id" element={<SingleArticle />} />
           <Route path="*" element={<Error />} />
         </Routes>
