@@ -11,6 +11,8 @@ function CommentCard({ comment, setComments, article, setArticle }) {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+   const [errMsg, setErrMsg] = useState("");
+   const [errStatus, setErrStatus] = useState("");
 
   useEffect(() => {
     comment.author === user
@@ -35,7 +37,9 @@ function CommentCard({ comment, setComments, article, setArticle }) {
         setLoading(false);
       })
       .catch((err) => {
-        setError({ err });
+        setError(true);
+        setErrMsg(err.response.data.message);
+        setErrStatus(err.response.status);
       });
   };
 
@@ -45,9 +49,10 @@ function CommentCard({ comment, setComments, article, setArticle }) {
     return <Loading />;
   }
 
-  if (error) {
-    return <Error />;
-  }
+   if (error) {
+     return <Error errMsg={errMsg} errStatus={errStatus} />;
+   }
+
 
   return (
     <section className="comment-card">

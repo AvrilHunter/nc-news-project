@@ -6,19 +6,24 @@ import CommentCard from "./CommentCard";
 import Expandable from "./styleFunctionComponents/Expandable";
 import NewComment from "./NewComment";
 
-function Comments({ article_id, article, setArticle }) {
+function Comments({ article, setArticle }) {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+    const [errMsg, setErrMsg] = useState("");
+    const [errStatus, setErrStatus] = useState("");
+
 
   useEffect(() => {
-    getCommentsByArticle(article_id)
+    getCommentsByArticle(article.article_id)
       .then((comments) => {
         setComments(comments);
         setLoading(false);
       })
       .catch((err) => {
-        setError({ err });
+         setError(true);
+         setErrMsg(err.response.data.message);
+         setErrStatus(err.response.status);
       });
   }, []);
 
@@ -27,13 +32,14 @@ function Comments({ article_id, article, setArticle }) {
   }
 
   if (error) {
-    return <Error />;
+    return <Error errMsg={errMsg} errStatus={errStatus} />;
   }
+
 
   return (
     <Expandable>
       <NewComment
-        article_id={article_id}
+        article_id={article.article_id}
         setComments={setComments}
         comments={comments}
       />

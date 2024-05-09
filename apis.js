@@ -2,7 +2,8 @@ import axios from "axios"
 import formatDate from "./src/utils/utils"
 
 export const getAllArticles = (params) => {
-  return axios.get("https://nc-news-z2fk.onrender.com/api/articles",params).then(({ data }) => {
+  return axios.get("https://nc-news-z2fk.onrender.com/api/articles", { params: params }).then(({ data }) => {
+   
     data.articles.forEach((article) => {
       article.created_at = formatDate(article.created_at)
     })
