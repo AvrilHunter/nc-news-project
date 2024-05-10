@@ -14,6 +14,7 @@ Utilized CRUD operations to the REST API.
 - READ:- You can view comments on an article 
 - UPDATE:- When on an article page you can up and down vote an article
 - CREATE:- You can post a comment on the article
+- CREATE:- You can post your own article
 - DELETE:- You can delete your own comments if you change your mind
 
 ## Built With
@@ -40,6 +41,19 @@ Used a variety of tools to improve accessibility
 - Contrast checker
 - Viewed with a screen reader
 - Passed Wave, Lighthouse, axe DevTools audits and inspected with browser accessability tools.
+
+## Skills Displayed
+
+- Using React Context and State 
+- Custom React Hooks created (error and loading hooks, data fetching hooks)
+- Axios requests
+- Error handling
+- Loading screens and animations
+- Optimistic rendering (example in the voting buttons for an article)
+- UX and UI
+- Data validation for forms, including feedback for the user
+
+
 
 ## Getting Started
 

@@ -18,6 +18,8 @@
 }
 
 .articleThumbnail {
+  height: 380px;
+  overflow: auto;
   border-radius: 15px;
   background-color: white;
   font-size: 1em;
@@ -27,10 +29,12 @@
   grid-template: auto auto auto auto auto / auto auto;
   padding: 10px;
   border: 4px solid #2a9d8f;
+  
 }
 .no-bullet-point{
   list-style-type: none;
   margin-right: 15px;
+  
 }
 
 #thumbnail-date{
@@ -95,7 +99,12 @@ h1 {
   margin: 5px;
   padding: 5px;
 }
-select {
+
+.logo-img{
+  max-width: 100px;
+  max-height: 100px
+}
+select, input{
   background: #8EE1D7;
   color: #264653;
   border: 1px solid #264653;
@@ -183,4 +192,9 @@ select {
 .flex-comments{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr auto;
+}
+
+.search-form{
+  display: flex;
+  flex-direction: row;
 }

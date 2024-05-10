@@ -54,10 +54,18 @@ export const deleteComment = (id) => {
 }
 
 export const getTopics = () => {
-  
   return axios
     .get(`https://nc-news-z2fk.onrender.com/api/topics`)
     .then(({data:{topics}}) => {
       return topics;
+    });
+}
+
+export const postArticle = (body) => {
+  return axios
+    .post(`https://nc-news-z2fk.onrender.com/api/articles`, body)
+    .then(({ data: { article } }) => {
+      console.log("I am here in Axios");
+      return article;
     });
 }

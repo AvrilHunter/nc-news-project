@@ -5,7 +5,8 @@ import AllArticles from "./AllArticles"
 import Header from './Header';
 import SingleArticle from './SingleArticle';
 import { UserProvider } from "../context/UserContext";
-import FeError from "../src/styleFunctionComponents/FeError"
+import NewArticle from './NewArticle';
+import FeError from "./styleFunctionComponents/FeError"
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AllArticles topic={topic} setTopic={setTopic} />} />
           <Route path="/articles/:article_id" element={<SingleArticle />} />
+          <Route path="/new-article" element={<NewArticle/>}/>
           <Route path="*" element={<FeError />} />
         </Routes>
       </UserProvider>

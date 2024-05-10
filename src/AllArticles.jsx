@@ -21,7 +21,7 @@ const {loading, error, errMsg, errStatus, page, setPage, allArticles, articleCou
 
   return (
     <>
-      <div className="flex">
+      <div>
         <SearchQueries setTopic={setTopic} />
       </div>
       <ul className="flex no-bullet-point">
