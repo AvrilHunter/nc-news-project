@@ -7,11 +7,15 @@ import Expandable from "./styleFunctionComponents/Expandable";
 import NewComment from "./NewComment";
 import LoadMore from "./LoadMore";
 import { useSearchParams } from "react-router-dom";
+import useLoading from "./hooks/useLoading";
 
 
 function Comments({ article, setArticle }) {
+
+  const [loading, loadingWrapper] = useLoading()
+
   const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(true);
+ // const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [errMsg, setErrMsg] = useState("");
   const [errStatus, setErrStatus] = useState("");
@@ -23,16 +27,18 @@ function Comments({ article, setArticle }) {
   const p = searchParams.get("p")
 
   useEffect(() => {
-    getCommentsByArticle(article.article_id,params)
-      .then((comments) => {
-        setComments(comments);
-        setLoading(false);
-      })
-      .catch((err) => {
-         setError(true);
-         setErrMsg(err.response.data.message);
-         setErrStatus(err.response.status);
-      });
+    
+    loadingWrapper(() => {
+      return getCommentsByArticle(article.article_id, params)
+        .then((comments) => {
+          setComments(comments);
+        })
+        .catch((err) => {
+          setError(true);
+          setErrMsg(err.response.data.message);
+          setErrStatus(err.response.status);
+        });
+    })
   }, [p]);
 
   if (loading) {
