@@ -5,14 +5,17 @@ import { useState } from "react";
 import CommentCard from "./CommentCard";
 import Expandable from "./styleFunctionComponents/Expandable";
 import NewComment from "./NewComment";
+import LoadMore from "./LoadMore";
 
 function Comments({ article, setArticle }) {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-    const [errMsg, setErrMsg] = useState("");
-    const [errStatus, setErrStatus] = useState("");
-
+  const [errMsg, setErrMsg] = useState("");
+  const [errStatus, setErrStatus] = useState("");
+  const [page, setPage] = useState(1)
+  
+  const totalCount = article.comment_count
 
   useEffect(() => {
     getCommentsByArticle(article.article_id)
@@ -37,26 +40,29 @@ function Comments({ article, setArticle }) {
 
 
   return (
-    <Expandable>
+    <section> 
       <NewComment
         article_id={article.article_id}
         setComments={setComments}
         comments={comments}
       />
-      <ul className="comments-section">
-        {comments.map((comment) => {
-          return (
-            <CommentCard
-              comment={comment}
-              key={comment.comment_id}
-              setComments={setComments}
-              article={article}
-              setArticle={setArticle}
-            />
-          );
-        })}
-      </ul>
-    </Expandable>
+      <Expandable>
+        <ul className="comments-section">
+          {comments.map((comment) => {
+            return (
+              <CommentCard
+                comment={comment}
+                key={comment.comment_id}
+                setComments={setComments}
+                article={article}
+                setArticle={setArticle}
+              />
+            );
+          })}
+        </ul>
+        <LoadMore page={page} setPage={setPage} totalCount={totalCount} />
+      </Expandable>
+    </section>
   );
 }
 

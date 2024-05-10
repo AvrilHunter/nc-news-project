@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Expandable({ children }) {
-  const [showing, setShowing] = useState(false);
+  const [showing, setShowing] = useState(true);
 
   const handleClick = () => {
     setShowing(!showing);

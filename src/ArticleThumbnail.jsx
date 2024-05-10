@@ -9,20 +9,22 @@ function ArticleThumbnail({ article }) {
     article_img_url,
     created_at,
     article_id,
-    comment_count
+    comment_count,
   } = article;
   return (
-    <Link to={`/articles/${article_id}`}>
-      <li className="articleThumbnail">
+    <li className="no-bullet-point">
+      <Link to={`/articles/${article_id}`} className="articleThumbnail">
         <img className="articleImage" src={article_img_url} alt={title} />
         <h2 className="title">{title}</h2>
-        <p className="author">Author: {author}</p>
-        <p className="topic"> Topic: {topic}</p>
-        <p className="votes">Votes: {votes}</p>
-        <p className="date">Date posted: {created_at}</p>
-        <p className="comment count">Comment Count: {comment_count}</p>
-      </li>
-    </Link>
+        <p className="no-margin bold"> {author}</p>
+        <p className="no-margin bold"> {topic}</p>
+        <p className="no-margin">Comments: {comment_count}</p>
+        <p className="no-margin">Votes: {votes}</p>
+        <p className="no-margin" id="thumbnail-date">
+          Date posted: {created_at}
+        </p>
+      </Link>
+    </li>
   );
 }
 

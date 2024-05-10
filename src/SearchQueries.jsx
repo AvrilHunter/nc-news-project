@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
+import TopicSearch from "./TopicSearch";
 
-function SearchQueries() {
+function SearchQueries({setTopic}) {
   const [searchParams, setSearchParams] = useSearchParams({});
 
   const onSortChangeHandler = (event) => {
@@ -15,24 +16,35 @@ function SearchQueries() {
     setSearchParams(newParams);
   };
 
-  //force some errors.
-  //should only be available on the main screen
+  const onLimitChangeHandler = (event) => {
+     const newParams = new URLSearchParams(searchParams);
+     newParams.set("limit", event.target.value);
+     setSearchParams(newParams);
+  }
 
   return (
     <>
       <form>
-        <label htmlFor="sort">Sort By:</label>
+      <TopicSearch setTopic={setTopic} />
+        <label htmlFor="sort"></label>
         <select id="sort" name="sort" onChange={onSortChangeHandler}>
           <option value="">Sort by...</option>
           <option value="created_at">Date Posted</option>
           <option value="votes">Number of votes</option>
           <option value="comment_count">Number of comments</option>
         </select>
-        <label htmlFor="order">Order:</label>
+        <label htmlFor="order"></label>
         <select id="order" name="order" onChange={onOrderChangeHandler}>
-          <option value="">order by...</option>
+          <option value="">Order by...</option>
           <option value="asc">Low to High</option>
           <option value="desc">High to Low</option>
+        </select>
+        <label htmlFor="limit"></label>
+        <select id="limit" name="limit" onChange={onLimitChangeHandler}>
+          <option value="">Number per page...</option>
+          <option value="5">5 per page</option>
+          <option value="10">10 per page</option>
+          <option value="20">20 per page</option>
         </select>
       </form>
     </>

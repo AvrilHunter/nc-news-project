@@ -7,6 +7,7 @@ export const getAllArticles = (params) => {
     data.articles.forEach((article) => {
       article.created_at = formatDate(article.created_at)
     })
+   
     return data
   })
 }

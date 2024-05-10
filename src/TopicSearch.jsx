@@ -24,7 +24,6 @@ function TopicSearch({ setTopic }) {
         setError(true);
         setErrMsg(err.response.data.message);
         setErrStatus(err.response.status);
-        console.log(err, "I am here");
       });
   }, []);
 
@@ -45,9 +44,9 @@ function TopicSearch({ setTopic }) {
 
   return (
     <form>
-      <label htmlFor="topic">Choose topic</label>
-      <select id="topics" name="topics" onChange={onTopicChangeHandler}>
-        <option value="">all topics</option>
+      <label htmlFor="choose-topic"></label>
+      <select id="choose-topic" name="topics" onChange={onTopicChangeHandler}>
+        <option value="">Search topic</option>
         {allTopics.map((topic) => {
           return (
             <option value={topic.slug} key={topic.slug}>

@@ -44,25 +44,33 @@ function NewComment({ article_id, setComments, comments }) {
   }
 
   return (
-    <form
-      onSubmit={(event) => {
-        handleSubmit(event);
-      }}
-    >
-      <label htmlFor="comment">Add a comment: </label>
-      <input
-        id="comment"
-        type="text"
-        placeholder="Your comment here...."
-        value={newComment.body}
-        onChange={(e) => {
-          setNewComment({ username: user, body: e.target.value });
+    <div className="add-comment-form">
+      <form
+        onSubmit={(event) => {
+          handleSubmit(event);
         }}
-      ></input>
-      <button className="buttonDesign" type="submit" disabled={buttonDisabled}>
-        Post
-      </button>
-    </form>
+      >
+        <label htmlFor="comment">
+          <strong>Add a comment</strong>{" "}
+        </label>
+        <input
+          id="comment"
+          type="text"
+          placeholder="Your comment here...."
+          value={newComment.body}
+          onChange={(e) => {
+            setNewComment({ username: user, body: e.target.value });
+          }}
+        ></input>
+        <button
+          className="buttonDesign"
+          type="submit"
+          disabled={buttonDisabled}
+        >
+          Post
+        </button>
+      </form>
+    </div>
   );
 }
 

@@ -4,34 +4,42 @@ import { useEffect, useState } from "react";
 import Loading from "./styleFunctionComponents/Loading";
 import Error from "./styleFunctionComponents/Error";
 import { useSearchParams } from "react-router-dom";
-import SortQueries from "./SearchQueries";
-import TopicSearch from "./TopicSearch";
+import SearchQueries from "./SearchQueries";
+import LoadMore from "./LoadMore";
 
 function AllArticles({ setTopic }) {
   const [allArticles, setAllArticles] = useState([]);
+  const [articleCount, setArticleCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const [errMsg, setErrMsg] = useState("");
   const [errStatus, setErrStatus] = useState("");
-  
+  const [page, setPage] = useState(1);
+
+
+  const order = searchParams.get("order")
+  const topic = searchParams.get("topic");
+  const sort_by = searchParams.get("sort_by");
+  const p = searchParams.get("p");
+  const limit = searchParams.get("limit")
 
   useEffect(() => {
     const currentParams = Object.fromEntries([...searchParams]);
     setLoading(true);
     getAllArticles(currentParams)
-      .then(({ articles }) => {
+      .then(({ articles, total_count }) => {
+        setArticleCount(total_count);
         setAllArticles(articles);
         setLoading(false);
       })
       .catch((err) => {
-         console.log("am I in the catch block - all articles?");
         setLoading(false);
-        setError(true)
+        setError(true);
         setErrMsg(err.response.data.message);
         setErrStatus(err.response.status);
       });
-  }, [searchParams]);
+  }, [order, topic, sort_by, p, limit]);
 
   if (loading) {
     return <Loading />;
@@ -44,16 +52,16 @@ function AllArticles({ setTopic }) {
   return (
     <>
       <div className="flex">
-        <SortQueries />
-        <TopicSearch setTopic={setTopic} />
+        <SearchQueries setTopic={setTopic} />
       </div>
-      <ul className="flex">
+      <ul className="flex no-bullet-point">
         {allArticles.map((article) => {
           return (
             <ArticleThumbnail article={article} key={article.article_id} />
           );
         })}
       </ul>
+      <LoadMore page={page} setPage={setPage} totalCount={articleCount} />
     </>
   );
 }
