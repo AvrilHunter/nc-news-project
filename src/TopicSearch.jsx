@@ -4,27 +4,21 @@ import Loading from "./styleFunctionComponents/Loading";
 import Error from "./styleFunctionComponents/Error";
 import { useSearchParams } from "react-router-dom";
 import useLoading from "./hooks/useLoading";
+import useError from "./hooks/useError";
 
 function TopicSearch({ setTopic }) {
-
+  const [errorWrapper, error, errMsg, errStatus] = useError()
   const [loading, loadingWrapper] = useLoading();
   const [allTopics, setAllTopics] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [error, setError] = useState(null);
-  const [errMsg, setErrMsg] = useState("");
-  const [errStatus, setErrStatus] = useState("");
 
   useEffect(() => {
     loadingWrapper(() => {
-      return getTopics()
-        .then((topics) => {
+      return errorWrapper(() => {
+        return getTopics().then((topics) => {
           setAllTopics(topics);
-        })
-        .catch((err) => {
-          setError(true);
-          setErrMsg(err.response.data.message);
-          setErrStatus(err.response.status);
         });
+      })
     });
   }, []);
 
@@ -45,8 +39,6 @@ function TopicSearch({ setTopic }) {
 
   return (
     <>
-      {/* <label htmlFor="choose-topic-form">Select articles by topic</label> */}
-
       <label htmlFor="choose-topic"></label>
       <select
         id="choose-topic"

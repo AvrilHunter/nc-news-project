@@ -9,8 +9,8 @@ function useArticles() {
   const [loading, loadingWrapper]=useLoading()
   const [allArticles, setAllArticles] = useState([]);
   const [articleCount, setArticleCount] = useState(0);
-  const [error, setError] = useState(null);
   const [searchParams] = useSearchParams();
+  const [error, setError] = useState(null);
   const [errMsg, setErrMsg] = useState("");
   const [errStatus, setErrStatus] = useState("");
   const [page, setPage] = useState(1);

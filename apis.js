@@ -54,7 +54,6 @@ export const deleteComment = (id) => {
 }
 
 export const getTopics = () => {
-  
   return axios
     .get(`https://nc-news-z2fk.onrender.com/api/topics`)
     .then(({data:{topics}}) => {
