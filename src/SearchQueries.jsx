@@ -25,22 +25,43 @@ function SearchQueries({setTopic}) {
   return (
     <>
       <form>
-      <TopicSearch setTopic={setTopic} />
-        <label htmlFor="sort"></label>
-        <select id="sort" name="sort" onChange={onSortChangeHandler}>
+        <TopicSearch setTopic={setTopic} />
+        <label htmlFor="sort" hidden>
+          Sort by:{" "}
+        </label>
+        <select
+          id="sort"
+          name="sort"
+          aria-label="sort by"
+          onChange={onSortChangeHandler}
+        >
           <option value="">Sort by...</option>
           <option value="created_at">Date Posted</option>
           <option value="votes">Number of votes</option>
           <option value="comment_count">Number of comments</option>
         </select>
-        <label htmlFor="order"></label>
-        <select id="order" name="order" onChange={onOrderChangeHandler}>
+        <label htmlFor="order" hidden>
+          Order by
+        </label>
+        <select
+          id="order"
+          name="order"
+          aria-label="order"
+          onChange={onOrderChangeHandler}
+        >
           <option value="">Order by...</option>
           <option value="asc">Low to High</option>
           <option value="desc">High to Low</option>
         </select>
-        <label htmlFor="limit"></label>
-        <select id="limit" name="limit" onChange={onLimitChangeHandler}>
+        <label htmlFor="limit" hidden>
+          Number of results per page:{" "}
+        </label>
+        <select
+          id="limit"
+          name="limit"
+          aria-label="order"
+          onChange={onLimitChangeHandler}
+        >
           <option value="">Number per page...</option>
           <option value="5">5 per page</option>
           <option value="10">10 per page</option>

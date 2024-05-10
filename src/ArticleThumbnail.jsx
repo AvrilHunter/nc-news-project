@@ -14,7 +14,7 @@ function ArticleThumbnail({ article }) {
   return (
     <li className="no-bullet-point">
       <Link to={`/articles/${article_id}`} className="articleThumbnail">
-        <img className="articleImage" src={article_img_url} alt={title} />
+        <img className="articleImage" src={article_img_url} alt="" />
         <h2 className="title">{title}</h2>
         <p className="no-margin bold"> {author}</p>
         <p className="no-margin bold"> {topic}</p>

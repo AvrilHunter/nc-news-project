@@ -43,19 +43,22 @@ function TopicSearch({ setTopic }) {
   }
 
   return (
-    <form>
-      <label htmlFor="choose-topic"></label>
-      <select id="choose-topic" name="topics" onChange={onTopicChangeHandler}>
-        <option value="">Search topic</option>
-        {allTopics.map((topic) => {
-          return (
-            <option value={topic.slug} key={topic.slug}>
-              {topic.slug}
-            </option>
-          );
-        })}
-      </select>
-    </form>
+    <>
+      {/* <label htmlFor="choose-topic-form">Select articles by topic</label> */}
+     
+        <label htmlFor="choose-topic"></label>
+        <select id="choose-topic" name="topics" title="choose-topic" onChange={onTopicChangeHandler}>
+          <option value="">Search topic</option>
+          {allTopics.map((topic) => {
+            return (
+              <option value={topic.slug} key={topic.slug}>
+                {topic.slug}
+              </option>
+            );
+          })}
+        </select>
+    
+    </>
   );
 }
 

@@ -23,7 +23,6 @@
   font-size: 1em;
   width: auto;
   max-width: 280px;
-  /* list-style-type: none; */
   display: grid;
   grid-template: auto auto auto auto auto / auto auto;
   padding: 10px;
@@ -131,33 +130,6 @@ select {
   background-color: #595959;
 }
 
-/* 
-@media screen and (min-width: 601px) {
-  header {
-    font-size: 80px;
-  }
-    articleThumbnail{
-    font-size:40px;
-  }
-}
-
-/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
-/* @media screen and (max-width: 600px) {
-  header {
-    font-size: 30px;
-  }
-  articleThumbnail{
-    font-size:20px;
-  }
-} */
-
-/* #flex-header {
-  display: flex;
-  justify-content: space-around;
-  gap: 20px;
-  text-decoration: none;
-} */
-
 .comment-card {
   border: 2px solid #2a9d8f;
   border-radius: 5px;
@@ -171,6 +143,7 @@ select {
   gap: 10px;
   justify-content: center;
   padding: 5px;
+  list-style-type: none;
 }
 
 .inline-block {
