@@ -24,7 +24,7 @@ function SearchQueries({setTopic}) {
 
   return (
     <>
-      <form>
+      <form className = "search-form">
         <TopicSearch setTopic={setTopic} />
         <label htmlFor="sort" hidden>
           Sort by:{" "}

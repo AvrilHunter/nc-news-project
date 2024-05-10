@@ -1,26 +1,11 @@
-import { useState, useEffect } from "react";
-import { getTopics } from "../apis";
 import Loading from "./styleFunctionComponents/Loading";
 import Error from "./styleFunctionComponents/Error";
 import { useSearchParams } from "react-router-dom";
-import useLoading from "./hooks/useLoading";
-import useError from "./hooks/useError";
+import useTopics from "./hooks/useTopics";
 
 function TopicSearch({ setTopic }) {
-  const [errorWrapper, error, errMsg, errStatus] = useError()
-  const [loading, loadingWrapper] = useLoading();
-  const [allTopics, setAllTopics] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-
-  useEffect(() => {
-    loadingWrapper(() => {
-      return errorWrapper(() => {
-        return getTopics().then((topics) => {
-          setAllTopics(topics);
-        });
-      })
-    });
-  }, []);
+  const [allTopics, loading, error, errMsg, errStatus] = useTopics();
 
   const onTopicChangeHandler = (event) => {
     setTopic(event.target.value);
