@@ -12,27 +12,11 @@ Make loading or Error as a custom hook.
 Deal with form validation better
 How to clear the error when you click the home button
 Next page and change limits
-Make topics and sort by all connected
-
+Make topics and sort by all connected in the flex. 
 Make votes component universal for commments and articles
-
-
-MAke the newspaper logo white
-Take out bullet points on all articles
-
-Article Thumbnail  - Reduce gaps, date along the bottom.
-
-
+Make the newspaper logo white
 All articles - bigger gap on the left than the right. 
-Voting needs to be connected
-
-Click post with empty it should make the box red.
-Check next page buttons work on comments.
 
 
 
-
-
-
-
-
+Comments - currently adds a copy to the top of the original comments, rather than re-fetching them. Is this okay? 

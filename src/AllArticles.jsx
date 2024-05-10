@@ -5,11 +5,11 @@ import Error from "./styleFunctionComponents/Error";
 
 import SearchQueries from "./SearchQueries";
 import LoadMore from "./LoadMore";
-import useFetchArticles from "./hooks/useFetchArticles";
+import useArticles from "./hooks/useArticles";
 
 function AllArticles({ setTopic }) {
 
-const {loading, error, errMsg, errStatus, page, setPage, allArticles, articleCount} = useFetchArticles()
+const {loading, error, errMsg, errStatus, page, setPage, allArticles, articleCount} = useArticles()
 
   if (loading) {
     return <Loading />;

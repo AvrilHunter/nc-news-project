@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { getAllArticles } from "../../apis"
 import { useEffect, useState } from "react";
 
-function useFetchArticles() {
+function useArticles() {
   const [allArticles, setAllArticles] = useState([]);
   const [articleCount, setArticleCount] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -39,4 +39,4 @@ function useFetchArticles() {
   return { loading, error, errMsg, errStatus, page, setPage, allArticles, articleCount }
 }
 
-export default useFetchArticles
+export default useArticles
