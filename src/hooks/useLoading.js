@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-function useLoading(initialLoadingState) {
+function useLoading() {
 
-  const [loading, setLoading] = useState(initialLoadingState);
+  const [loading, setLoading] = useState(true);
 
   const loadingWrapper = (callback) => {
     setLoading(true)
@@ -10,7 +10,6 @@ function useLoading(initialLoadingState) {
       setLoading(false)
     })
   }
-  
   return [loading, loadingWrapper]
 }
 

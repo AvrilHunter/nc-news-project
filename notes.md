@@ -20,3 +20,6 @@ All articles - bigger gap on the left than the right.
 
 
 Comments - currently adds a copy to the top of the original comments, rather than re-fetching them. Is this okay? 
+
+Loading hook to be implememted into all components.
+Add error hook first.
