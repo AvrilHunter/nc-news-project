@@ -56,19 +56,17 @@ function CommentCard({ comment, setComments, article, setArticle }) {
 
 
   return (
-    <section className="comment-card">
-      <p>{body}</p>
-      <strong className="flex-comments">
-        <p> {author}</p>
-      
-      <p>Votes: {votes}</p>
-        {/* <Votes article={comment} setArticle={setComment} /> */}
-        <p>{created_at}</p>
-      <button className={deleteButtonAvailable} onClick={handleClick}>
-          Delete
-      </button>
-      </strong>
-    </section>
+    <li className="comment-card">
+        <p>{body}</p>
+        <strong className="flex-comments">
+          <p> {author}</p>
+          <p>Votes: {votes}</p>
+          <p>{created_at}</p>
+          <button className={deleteButtonAvailable} onClick={handleClick}>
+            Delete
+          </button>
+        </strong>
+    </li>
   );
 }
 

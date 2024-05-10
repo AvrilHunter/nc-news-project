@@ -7,13 +7,14 @@ App available at -  [nc-news-ah123.netlify.app](https://nc-news-ah123.netlify.ap
 
 ## Functionality
 
-- All articles can be sorted by newest-oldest, popularity of votes and comments.
-- Articles can be filtered by topic.
-- When on an article page you can up and down vote an article
-- You can view comments
-- Feel free to post a comment on the article
-- You can delete your own comments if you change your mind!
+Utilized CRUD operations to the REST API.
 
+- READ:-All articles can be sorted by newest-oldest, popularity of votes and comments.
+- READ:- Articles can be filtered by topic.
+- READ:- You can view comments on an article 
+- UPDATE:- When on an article page you can up and down vote an article
+- CREATE:- You can post a comment on the article
+- DELETE:- You can delete your own comments if you change your mind
 
 ## Built With
 
@@ -30,6 +31,15 @@ API Repo -
 https://github.com/AvrilHunter/NC-News   
  
 Hosted API - https://nc-news-z2fk.onrender.com/api/
+
+## Accessibility 
+
+Used a variety of tools to improve accessibility
+- Semantic HTML
+- Alt text on images
+- Contrast checker
+- Viewed with a screen reader
+- Passed Wave, Lighthouse, axe DevTools audits and inspected with browser accessability tools.
 
 ## Getting Started
 

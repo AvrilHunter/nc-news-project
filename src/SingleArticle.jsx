@@ -49,7 +49,7 @@ function SingleArticle() {
 
   return (
     <article className="single-page">
-      <img className="articleImageSingle" src={article_img_url} alt={title} />
+      <img className="articleImageSingle" src={article_img_url} alt="" />
       <h2 className="title">{title}</h2>
       <p className="body">{body}</p>
       <div className="single-article">
