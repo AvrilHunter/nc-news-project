@@ -19,10 +19,6 @@ Deal with form validation better
 
 How to clear the error when you click the home button
 
-Next page and change limits
-
-Make topics and sort by all connected in the flex. 
-
 Make votes component universal for commments and articles
 
 Make the newspaper logo white
@@ -30,11 +26,10 @@ Make the newspaper logo white
 All articles - bigger gap on the left than the right. 
 
 
-
 Comments - currently adds a copy to the top of the original comments, rather than re-fetching them. Is this okay? 
 
 Loading hook to be implememted into all components.
-Add error hook first.
+Do Error 
 
 New Article - needs data validation
 Needs formatting
