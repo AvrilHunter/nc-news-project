@@ -6,6 +6,8 @@ import CommentCard from "./CommentCard";
 import Expandable from "./styleFunctionComponents/Expandable";
 import NewComment from "./NewComment";
 import LoadMore from "./LoadMore";
+import { useSearchParams } from "react-router-dom";
+
 
 function Comments({ article, setArticle }) {
   const [comments, setComments] = useState([]);
@@ -14,11 +16,14 @@ function Comments({ article, setArticle }) {
   const [errMsg, setErrMsg] = useState("");
   const [errStatus, setErrStatus] = useState("");
   const [page, setPage] = useState(1)
-  
+  const [searchParams] = useSearchParams();
   const totalCount = article.comment_count
 
+  let params = new URLSearchParams(searchParams);
+  const p = searchParams.get("p")
+
   useEffect(() => {
-    getCommentsByArticle(article.article_id)
+    getCommentsByArticle(article.article_id,params)
       .then((comments) => {
         setComments(comments);
         setLoading(false);
@@ -28,7 +33,7 @@ function Comments({ article, setArticle }) {
          setErrMsg(err.response.data.message);
          setErrStatus(err.response.status);
       });
-  }, []);
+  }, [p]);
 
   if (loading) {
     return <Loading />;
@@ -37,7 +42,6 @@ function Comments({ article, setArticle }) {
   if (error) {
     return <Error errMsg={errMsg} errStatus={errStatus} />;
   }
-
 
   return (
     <section> 

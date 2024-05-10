@@ -7,7 +7,6 @@ export const getAllArticles = (params) => {
     data.articles.forEach((article) => {
       article.created_at = formatDate(article.created_at)
     })
-   
     return data
   })
 }
@@ -19,9 +18,9 @@ export const getArticleById = (id) => {
   });
 }
 
-export const getCommentsByArticle = (id) => {
+export const getCommentsByArticle = (id, params) => {
   return axios
-    .get(`https://nc-news-z2fk.onrender.com/api/articles/${id}/comments`)
+    .get(`https://nc-news-z2fk.onrender.com/api/articles/${id}/comments`, { params: params })
     .then(({ data }) => {
     data.comments.forEach((comment) => {
       comment.created_at = formatDate(comment.created_at);
