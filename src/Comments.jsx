@@ -5,17 +5,25 @@ import { useState } from "react";
 import CommentCard from "./CommentCard";
 import Expandable from "./styleFunctionComponents/Expandable";
 import NewComment from "./NewComment";
+import LoadMore from "./LoadMore";
+import { useSearchParams } from "react-router-dom";
+
 
 function Comments({ article, setArticle }) {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-    const [errMsg, setErrMsg] = useState("");
-    const [errStatus, setErrStatus] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [errStatus, setErrStatus] = useState("");
+  const [page, setPage] = useState(1)
+  const [searchParams] = useSearchParams();
+  const totalCount = article.comment_count
 
+  let params = new URLSearchParams(searchParams);
+  const p = searchParams.get("p")
 
   useEffect(() => {
-    getCommentsByArticle(article.article_id)
+    getCommentsByArticle(article.article_id,params)
       .then((comments) => {
         setComments(comments);
         setLoading(false);
@@ -25,7 +33,7 @@ function Comments({ article, setArticle }) {
          setErrMsg(err.response.data.message);
          setErrStatus(err.response.status);
       });
-  }, []);
+  }, [p]);
 
   if (loading) {
     return <Loading />;
@@ -35,28 +43,30 @@ function Comments({ article, setArticle }) {
     return <Error errMsg={errMsg} errStatus={errStatus} />;
   }
 
-
   return (
-    <Expandable>
+    <section> 
       <NewComment
         article_id={article.article_id}
         setComments={setComments}
         comments={comments}
       />
-      <ul className="comments-section">
-        {comments.map((comment) => {
-          return (
-            <CommentCard
-              comment={comment}
-              key={comment.comment_id}
-              setComments={setComments}
-              article={article}
-              setArticle={setArticle}
-            />
-          );
-        })}
-      </ul>
-    </Expandable>
+      <Expandable>
+        <ul className="comments-section">
+          {comments.map((comment) => {
+            return (
+              <CommentCard
+                comment={comment}
+                key={comment.comment_id}
+                setComments={setComments}
+                article={article}
+                setArticle={setArticle}
+              />
+            );
+          })}
+        </ul>
+        <LoadMore page={page} setPage={setPage} totalCount={totalCount} />
+      </Expandable>
+    </section>
   );
 }
 

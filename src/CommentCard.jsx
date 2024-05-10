@@ -3,6 +3,7 @@ import { UserContext } from "../context/UserContext";
 import { deleteComment } from "../apis";
 import { getCommentsByArticle } from "../apis";
 import Loading from "./styleFunctionComponents/Loading";
+import Votes from "./Votes";
 
 function CommentCard({ comment, setComments, article, setArticle }) {
   const user = useContext(UserContext);
@@ -57,12 +58,16 @@ function CommentCard({ comment, setComments, article, setArticle }) {
   return (
     <section className="comment-card">
       <p>{body}</p>
-      <p>Author: {author}</p>
+      <strong className="flex-comments">
+        <p> {author}</p>
+      
       <p>Votes: {votes}</p>
-      <p>Date posted: {created_at}</p>
+        {/* <Votes article={comment} setArticle={setComment} /> */}
+        <p>{created_at}</p>
       <button className={deleteButtonAvailable} onClick={handleClick}>
-        Delete Comment
+          Delete
       </button>
+      </strong>
     </section>
   );
 }

@@ -20,7 +20,6 @@ App available at -  [nc-news-ah123.netlify.app](https://nc-news-ah123.netlify.ap
 - [![React][React.js]][React-url]
 - Vite ![Vite.js](image.png)
 - React Router
-- Vite
 - Netlify
 - Axios
 - JavaScript

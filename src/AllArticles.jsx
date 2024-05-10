@@ -1,37 +1,15 @@
 import ArticleThumbnail from "./ArticleThumbnail";
-import { getAllArticles } from "../apis";
-import { useEffect, useState } from "react";
+
 import Loading from "./styleFunctionComponents/Loading";
 import Error from "./styleFunctionComponents/Error";
-import { useSearchParams } from "react-router-dom";
-import SortQueries from "./SearchQueries";
-import TopicSearch from "./TopicSearch";
+
+import SearchQueries from "./SearchQueries";
+import LoadMore from "./LoadMore";
+import useFetchArticles from "./hooks/useFetchArticles";
 
 function AllArticles({ setTopic }) {
-  const [allArticles, setAllArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [errMsg, setErrMsg] = useState("");
-  const [errStatus, setErrStatus] = useState("");
-  
 
-  useEffect(() => {
-    const currentParams = Object.fromEntries([...searchParams]);
-    setLoading(true);
-    getAllArticles(currentParams)
-      .then(({ articles }) => {
-        setAllArticles(articles);
-        setLoading(false);
-      })
-      .catch((err) => {
-         console.log("am I in the catch block - all articles?");
-        setLoading(false);
-        setError(true)
-        setErrMsg(err.response.data.message);
-        setErrStatus(err.response.status);
-      });
-  }, [searchParams]);
+const {loading, error, errMsg, errStatus, page, setPage, allArticles, articleCount} = useFetchArticles()
 
   if (loading) {
     return <Loading />;
@@ -44,16 +22,16 @@ function AllArticles({ setTopic }) {
   return (
     <>
       <div className="flex">
-        <SortQueries />
-        <TopicSearch setTopic={setTopic} />
+        <SearchQueries setTopic={setTopic} />
       </div>
-      <ul className="flex">
+      <ul className="flex no-bullet-point">
         {allArticles.map((article) => {
           return (
             <ArticleThumbnail article={article} key={article.article_id} />
           );
         })}
       </ul>
+      <LoadMore page={page} setPage={setPage} totalCount={articleCount} />
     </>
   );
 }
