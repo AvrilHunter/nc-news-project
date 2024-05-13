@@ -44,6 +44,7 @@ Used a variety of tools to improve accessibility
 
 ## Skills Displayed
 
+- Planning wireframes and component trees 
 - Using React Context and State 
 - Custom React Hooks created (error and loading hooks, data fetching hooks)
 - Axios requests
@@ -52,7 +53,6 @@ Used a variety of tools to improve accessibility
 - Optimistic rendering (example in the voting buttons for an article)
 - UX and UI
 - Data validation for forms, including feedback for the user
-
 
 
 ## Getting Started
