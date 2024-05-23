@@ -18,8 +18,8 @@ function ArticleThumbnail({ article }) {
         <h2 className="title">{title}</h2>
         <p className="no-margin bold"> {author}</p>
         <p className="no-margin bold"> {topic}</p>
-        <p className="no-margin">Comments: {comment_count}</p>
-        <p className="no-margin">Votes: {votes}</p>
+        <p className="no-margin">{comment_count} comments</p>
+        <p className="no-margin">{votes} votes</p>
         <p className="no-margin" id="thumbnail-date">
           Date posted: {created_at}
         </p>

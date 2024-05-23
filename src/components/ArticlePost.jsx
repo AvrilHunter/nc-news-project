@@ -1,41 +1,46 @@
-import Error from "./styleFunctionComponents/Error";
-import Loading from "./styleFunctionComponents/Loading";
-import useTopics from "./hooks/useTopics";
-import { UserContext } from "../context/UserContext";
+import Error from "./Error";
+import Loading from "./Loading";
+import useTopics from "../hooks/useTopics";
+import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import { useState } from "react";
-import { postArticle } from "../apis";
+import { postArticle } from "../../apis";
 import ArticleThumbnail from "./ArticleThumbnail";
 
-function NewArticle() {
+function ArticlePost() {
   const user = useContext(UserContext);
-  const [allTopics, loading] = useTopics(); //didn't bring in this error messaging. 
-  const [newArticle, setNewArticle] = useState({ author: user, topic: "coding" })
+  const [allTopics, loading] = useTopics(); //didn't bring in this error messaging.
+  const [newArticle, setNewArticle] = useState({
+    author: user,
+    topic: "coding",
+  });
   const [error, setError] = useState(null);
   const [errMsg, setErrMsg] = useState("");
   const [errStatus, setErrStatus] = useState("");
-  const [postedArticle, setPostedArticle]=useState(null)
+  const [postedArticle, setPostedArticle] = useState(null);
 
   const onTitleChange = (event) => {
     setNewArticle({ ...newArticle, title: event.target.value });
-  }
-    const onBodyChange = (event) => {
-      setNewArticle({ ...newArticle, body: event.target.value });
-    };
-   const onTopicChange = (event) => {
-     setNewArticle({ ...newArticle, topic: event.target.value });
-   };
-  
+  };
+  const onBodyChange = (event) => {
+    setNewArticle({ ...newArticle, body: event.target.value });
+  };
+  const onTopicChange = (event) => {
+    setNewArticle({ ...newArticle, topic: event.target.value });
+  };
+
   const handleSubmit = (event) => {
-    event.preventDefault()
-    postArticle(newArticle).then((article) => {
-      setPostedArticle(article)
-    }).catch((err) => {
-      setErrMsg(err.response.data.message);
-      setErrStatus(err.response.status);
-      setError(true);
-    })
-  }
+    event.preventDefault();
+    postArticle(newArticle)
+      .then((article) => {
+        setPostedArticle(article);
+      })
+      .catch((err) => {
+        setErrMsg(err.response.data.message);
+        setErrStatus(err.response.status);
+        setError(true);
+      });
+  };
 
   if (loading) {
     return <Loading />;
@@ -44,7 +49,7 @@ function NewArticle() {
   if (error) {
     return <Error errMsg={errMsg} errStatus={errStatus} />;
   }
-  
+
   return (
     <>
       <p>User: {user}</p>
@@ -81,4 +86,4 @@ function NewArticle() {
   );
 }
 
-export default NewArticle
+export default ArticlePost;

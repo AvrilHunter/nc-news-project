@@ -21,7 +21,6 @@ function Header() {
       <Link to={`/new-article`}>
         <button className="buttonDesign">Post New Article</button>
       </Link>
-      {/* <button className="buttonDesign">Search</button> */}
     </header>
   );
 }

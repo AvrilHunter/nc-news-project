@@ -1,25 +1,27 @@
-import './App.css'
+import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { useState } from 'react';
-import AllArticles from "./AllArticles"
-import Header from './Header';
-import SingleArticle from './SingleArticle';
+import { useState } from "react";
+import AllArticles from "./components/AllArticles";
+import Header from "./components/Header";
+import SingleArticle from "./components/SingleArticle";
 import { UserProvider } from "../context/UserContext";
-import NewArticle from './NewArticle';
-import FeError from "./styleFunctionComponents/FeError"
+import ArticlePost from "./components/ArticlePost";
+import FeError from "./components/FeError";
 
 function App() {
-
   const [topic, setTopic] = useState("cooking");
 
   return (
     <>
       <UserProvider>
-        <Header/>
+        <Header />
         <Routes>
-          <Route path="/" element={<AllArticles topic={topic} setTopic={setTopic} />} />
+          <Route
+            path="/"
+            element={<AllArticles topic={topic} setTopic={setTopic} />}
+          />
           <Route path="/articles/:article_id" element={<SingleArticle />} />
-          <Route path="/new-article" element={<NewArticle/>}/>
+          <Route path="/new-article" element={<ArticlePost />} />
           <Route path="*" element={<FeError />} />
         </Routes>
       </UserProvider>
@@ -27,4 +29,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

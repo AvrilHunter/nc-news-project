@@ -1,7 +1,7 @@
-import Loading from "./styleFunctionComponents/Loading";
-import Error from "./styleFunctionComponents/Error";
+import Loading from "./Loading";
+import Error from "./Error";
 import { useSearchParams } from "react-router-dom";
-import useTopics from "./hooks/useTopics";
+import useTopics from "../hooks/useTopics";
 
 function TopicSearch({ setTopic }) {
   const [searchParams, setSearchParams] = useSearchParams();

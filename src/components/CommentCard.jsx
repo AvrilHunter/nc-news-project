@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../context/UserContext";
-import { deleteComment } from "../apis";
-import { getCommentsByArticle } from "../apis";
-import Loading from "./styleFunctionComponents/Loading";
-import Votes from "./Votes";
+import { UserContext } from "../../context/UserContext";
+import { deleteComment } from "../../apis";
+import { getCommentsByArticle } from "../../apis";
+import Loading from "./Loading";
 
 function CommentCard({ comment, setComments, article, setArticle }) {
   const user = useContext(UserContext);
@@ -12,8 +11,8 @@ function CommentCard({ comment, setComments, article, setArticle }) {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-   const [errMsg, setErrMsg] = useState("");
-   const [errStatus, setErrStatus] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [errStatus, setErrStatus] = useState("");
 
   useEffect(() => {
     comment.author === user
@@ -50,22 +49,21 @@ function CommentCard({ comment, setComments, article, setArticle }) {
     return <Loading />;
   }
 
-   if (error) {
-     return <Error errMsg={errMsg} errStatus={errStatus} />;
-   }
-
+  if (error) {
+    return <Error errMsg={errMsg} errStatus={errStatus} />;
+  }
 
   return (
     <li className="comment-card">
-        <p>{body}</p>
-        <strong className="flex-comments">
-          <p> {author}</p>
-          <p>Votes: {votes}</p>
-          <p>{created_at}</p>
-          <button className={deleteButtonAvailable} onClick={handleClick}>
-            Delete
-          </button>
-        </strong>
+      <p>{body}</p>
+      <strong className="flex-comments">
+        <p> {author}</p>
+        <p>{votes} votes</p>
+        <p>{created_at}</p>
+        <button className={deleteButtonAvailable} onClick={handleClick}>
+          Delete
+        </button>
+      </strong>
     </li>
   );
 }

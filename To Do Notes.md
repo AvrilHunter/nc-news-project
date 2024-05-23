@@ -35,3 +35,7 @@ When you do Page = 3 and limit 20 it comes up with 404 error, when you change th
 When this error has occured it should reset to zero. 
 
 
+Click browser back should go back
+
+Clear search parameters in the header
+Keep the boxes selected as what you are looking at

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById } from "../apis";
+import { getArticleById } from "../../apis";
 import Comments from "./Comments";
 import Votes from "./Votes";
-import Loading from "./styleFunctionComponents/Loading";
-import Error from "./styleFunctionComponents/Error";
+import Loading from "./Loading";
+import Error from "./Error";
 
 function SingleArticle() {
   const { article_id } = useParams();
@@ -56,7 +56,7 @@ function SingleArticle() {
         <p className="author">Author: {author}</p>
         <p className="topic"> Topic: {topic}</p>
         <p className="date">Date posted: {created_at}</p>
-        <p className="comment_count">Comments: {comment_count}</p>
+        <p className="comment_count">{comment_count} comments</p>
         <div className="span-two-columns">
           {<Votes setArticle={setArticle} article={article} />}
         </div>

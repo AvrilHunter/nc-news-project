@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../context/UserContext";
-import { postCommentByArticle } from "../apis";
-import Error from "./styleFunctionComponents/Error";
+import { UserContext } from "../../context/UserContext";
+import { postCommentByArticle } from "../../apis";
+import Error from "./Error";
 
-function NewComment({ article_id, setComments, comments }) {
+function CommentPost({ article_id, setComments, comments }) {
   const user = useContext(UserContext);
   const [error, setError] = useState(null);
   const [errMsg, setErrMsg] = useState("");
@@ -15,10 +15,9 @@ function NewComment({ article_id, setComments, comments }) {
     body: "",
   });
 
-
   useEffect(() => {
     newComment.body === "" ? setButtonDisabled(true) : setButtonDisabled(false);
-  },[newComment]);
+  }, [newComment]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,7 +42,6 @@ function NewComment({ article_id, setComments, comments }) {
     return <Error errMsg={errMsg} errStatus={errStatus} />;
   }
 
-
   if (!isCommentValid) {
     return (
       <div className="add-comment-form">
@@ -67,16 +65,19 @@ function NewComment({ article_id, setComments, comments }) {
                 ? setValidComment(false)
                 : setValidComment(true);
             }}
-            ></input>
-            <p>Please add a comment to post!</p>
-          <button className="buttonDesign" type="submit" disabled={buttonDisabled}>
+          ></input>
+          <p>Please add a comment to post!</p>
+          <button
+            className="buttonDesign"
+            type="submit"
+            disabled={buttonDisabled}
+          >
             Post
           </button>
         </form>
       </div>
     );
   }
-
 
   return (
     <div className="add-comment-form">
@@ -96,9 +97,9 @@ function NewComment({ article_id, setComments, comments }) {
           value={newComment.body}
           onChange={(e) => {
             setNewComment({ username: user, body: e.target.value });
-             e.target.value === ""
-               ? setValidComment(false)
-               : setValidComment(true);
+            e.target.value === ""
+              ? setValidComment(false)
+              : setValidComment(true);
           }}
         ></input>
         <button
@@ -113,4 +114,4 @@ function NewComment({ article_id, setComments, comments }) {
   );
 }
 
-export default NewComment;
+export default CommentPost;
