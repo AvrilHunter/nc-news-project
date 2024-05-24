@@ -3,7 +3,7 @@ import Error from "./Error";
 import { useSearchParams } from "react-router-dom";
 import useTopics from "../hooks/useTopics";
 
-function TopicSearch({ topic, setTopic }) {
+function TopicSearch({ setTopic }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [allTopics, loading, error, errMsg, errStatus] = useTopics();
 

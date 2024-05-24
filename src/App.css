@@ -29,6 +29,7 @@
   grid-template: auto auto auto auto auto / auto auto;
   padding: 10px;
   border: 4px solid #2a9d8f;
+  box-shadow: 4px 4px #C7DDE5;
   
 }
 .no-bullet-point{
@@ -92,10 +93,7 @@ h1 {
   background-color: #3A6B7E;
   border-radius: 15px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  align-content: center;
-  justify-content: centre;
   margin: 5px;
   padding: 5px;
 }
@@ -118,9 +116,8 @@ select, input{
   color: #264653;
   background-color:#8EE1D7 ;
   cursor: pointer;
-  box-shadow: 5px 5px 5px #e9c46a;
   border: 1px solid #264653;
-  padding: 4px;
+  padding: 5px;
   border-radius: 5px;
   align-self: center;
   margin: 5px;
