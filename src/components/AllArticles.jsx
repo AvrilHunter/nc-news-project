@@ -1,11 +1,10 @@
 import ArticleThumbnail from "./ArticleThumbnail";
 import Loading from "./Loading";
 import Error from "./Error";
-import SearchQueries from "./SearchQueries";
 import LoadMore from "./LoadMore";
 import useArticles from "../hooks/useArticles";
 
-function AllArticles({ topic, setTopic }) {
+function AllArticles() {
   const {
     loading,
     error,
@@ -27,9 +26,6 @@ function AllArticles({ topic, setTopic }) {
 
   return (
     <>
-      <div>
-        <SearchQueries setTopic={setTopic} topic={topic} />
-      </div>
       <ul className="flex no-bullet-point">
         {allArticles.map((article) => {
           return (

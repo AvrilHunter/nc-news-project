@@ -1,30 +1,41 @@
 import { useSearchParams } from "react-router-dom";
 import TopicSearch from "./TopicSearch";
 
-function SearchQueries({setTopic , topic}) {
+function SearchQueries({ setTopic, topic }) {
   const [searchParams, setSearchParams] = useSearchParams({});
 
-  const onSortChangeHandler = (event) => {
+  const onChangeHandler = (event) => {
     const newParams = new URLSearchParams(searchParams);
-    newParams.set("sort_by", event.target.value);
-    setSearchParams(newParams);
-  };
-
-  const onOrderChangeHandler = (event) => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set("order", event.target.value);
-    setSearchParams(newParams);
+    if (event.target.value === "") {
+      newParams.delete("sort_by");
+      newParams.delete("order");
+      setSearchParams(newParams);
+    } else {
+      const query = event.target.value.split("-");
+      const key = query[0];
+      const order = query[1].toUpperCase();
+      newParams.set("sort_by", key);
+      newParams.set("order", order);
+      console.log(key, order, "key and order");
+      setSearchParams(newParams);
+    }
   };
 
   const onLimitChangeHandler = (event) => {
-     const newParams = new URLSearchParams(searchParams);
-     newParams.set("limit", event.target.value);
-     setSearchParams(newParams);
+    const newParams = new URLSearchParams(searchParams);
+    if (event.target.value === "") {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.delete("limit");
+      setSearchParams(newParams);
+    } else {
+      newParams.set("limit", event.target.value);
+      setSearchParams(newParams);
+    }
   }
 
   return (
     <>
-      <form className = "search-form">
+      <form className="search-form">
         <TopicSearch setTopic={setTopic} topic={topic} />
         <label htmlFor="sort" hidden>
           Sort by:{" "}
@@ -33,25 +44,15 @@ function SearchQueries({setTopic , topic}) {
           id="sort"
           name="sort"
           aria-label="sort by"
-          onChange={onSortChangeHandler}
+          onChange={onChangeHandler}
         >
           <option value="">Sort by...</option>
-          <option value="created_at">Date posted</option>
-          <option value="votes">Number of votes</option>
-          <option value="comment_count">Number of comments</option>
-        </select>
-        <label htmlFor="order" hidden>
-          Order by
-        </label>
-        <select
-          id="order"
-          name="order"
-          aria-label="order"
-          onChange={onOrderChangeHandler}
-        >
-          <option value="">Order by...</option>
-          <option value="asc">Low to High</option>
-          <option value="desc">High to Low</option>
+          <option value="created_at-asc">Date oldest-newest</option>
+          <option value="created_at-desc">Date newest-oldest</option>
+          <option value="votes-desc">Votes highest-lowest</option>
+          <option value="votes-asc">Votes lowest-highest</option>
+          <option value="comment_count-desc">Comments highest-lowest</option>
+          <option value="comment_count-asc">Comments lowest-highest</option>
         </select>
         <label htmlFor="limit" hidden>
           Display of results per page:{" "}
@@ -74,7 +75,6 @@ function SearchQueries({setTopic , topic}) {
 
 export default SearchQueries;
 
-
 /*
 Sort by
 Date old-new
@@ -83,7 +83,5 @@ Votes high-low
 Votes low-high
 Comments high-low
 Comments low-high
-
-Make it stay 
 
 */

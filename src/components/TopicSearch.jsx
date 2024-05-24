@@ -6,12 +6,17 @@ import useTopics from "../hooks/useTopics";
 function TopicSearch({ topic, setTopic }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [allTopics, loading, error, errMsg, errStatus] = useTopics();
-console.log(topic, "IS topic set here?");
+
   const onTopicChangeHandler = (event) => {
-    setTopic(event.target.value);
     const newParams = new URLSearchParams(searchParams);
-    newParams.set("topic", event.target.value);
-    setSearchParams(newParams);
+    if (event.target.value === "all") {
+      newParams.delete("topic");
+      setSearchParams(newParams);
+    } else {
+      setTopic(event.target.value);
+      newParams.set("topic", event.target.value);
+      setSearchParams(newParams);
+    }
   };
 
   if (loading) {
@@ -31,25 +36,15 @@ console.log(topic, "IS topic set here?");
         title="choose-topic"
         onChange={onTopicChangeHandler}
       >
-        <option value="Filter by..." key="all">
-          Filter by...
+        <option value="all" key="all">
+          All topics
         </option>
         {allTopics.map((topicObject) => {
           return (
             <>
-              {topic === topicObject.slug ? (
-                <option
-                  value={topicObject.slug}
-                  key={topicObject.slug}
-                  selected
-                >
-                  {topicObject.slug}
-                </option>
-              ) : (
-                <option value={topicObject.slug} key={topicObject.slug}>
-                  {topicObject.slug}
-                </option>
-              )}
+              <option value={topicObject.slug} key={topicObject.slug}>
+                {topicObject.slug}
+              </option>
             </>
           );
         })}
