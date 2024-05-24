@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import TopicSearch from "./TopicSearch";
 
-function SearchQueries({setTopic}) {
+function SearchQueries({setTopic , topic}) {
   const [searchParams, setSearchParams] = useSearchParams({});
 
   const onSortChangeHandler = (event) => {
@@ -25,7 +25,7 @@ function SearchQueries({setTopic}) {
   return (
     <>
       <form className = "search-form">
-        <TopicSearch setTopic={setTopic} />
+        <TopicSearch setTopic={setTopic} topic={topic} />
         <label htmlFor="sort" hidden>
           Sort by:{" "}
         </label>
@@ -36,7 +36,7 @@ function SearchQueries({setTopic}) {
           onChange={onSortChangeHandler}
         >
           <option value="">Sort by...</option>
-          <option value="created_at">Date Posted</option>
+          <option value="created_at">Date posted</option>
           <option value="votes">Number of votes</option>
           <option value="comment_count">Number of comments</option>
         </select>
@@ -54,7 +54,7 @@ function SearchQueries({setTopic}) {
           <option value="desc">High to Low</option>
         </select>
         <label htmlFor="limit" hidden>
-          Number of results per page:{" "}
+          Display of results per page:{" "}
         </label>
         <select
           id="limit"
@@ -73,3 +73,17 @@ function SearchQueries({setTopic}) {
 }
 
 export default SearchQueries;
+
+
+/*
+Sort by
+Date old-new
+Date new-old
+Votes high-low
+Votes low-high
+Comments high-low
+Comments low-high
+
+Make it stay 
+
+*/

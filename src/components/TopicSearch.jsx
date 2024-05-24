@@ -3,10 +3,10 @@ import Error from "./Error";
 import { useSearchParams } from "react-router-dom";
 import useTopics from "../hooks/useTopics";
 
-function TopicSearch({ setTopic }) {
+function TopicSearch({ topic, setTopic }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [allTopics, loading, error, errMsg, errStatus] = useTopics();
-
+console.log(topic, "IS topic set here?");
   const onTopicChangeHandler = (event) => {
     setTopic(event.target.value);
     const newParams = new URLSearchParams(searchParams);
@@ -31,12 +31,26 @@ function TopicSearch({ setTopic }) {
         title="choose-topic"
         onChange={onTopicChangeHandler}
       >
-        <option value="">Search topic</option>
-        {allTopics.map((topic) => {
+        <option value="Filter by..." key="all">
+          Filter by...
+        </option>
+        {allTopics.map((topicObject) => {
           return (
-            <option value={topic.slug} key={topic.slug}>
-              {topic.slug}
-            </option>
+            <>
+              {topic === topicObject.slug ? (
+                <option
+                  value={topicObject.slug}
+                  key={topicObject.slug}
+                  selected
+                >
+                  {topicObject.slug}
+                </option>
+              ) : (
+                <option value={topicObject.slug} key={topicObject.slug}>
+                  {topicObject.slug}
+                </option>
+              )}
+            </>
           );
         })}
       </select>

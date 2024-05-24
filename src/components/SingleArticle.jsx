@@ -33,7 +33,6 @@ function SingleArticle() {
     title,
     article_img_url,
     comment_count,
-    votes,
     body,
     topic,
     created_at,

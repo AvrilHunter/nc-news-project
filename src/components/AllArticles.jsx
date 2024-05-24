@@ -5,7 +5,7 @@ import SearchQueries from "./SearchQueries";
 import LoadMore from "./LoadMore";
 import useArticles from "../hooks/useArticles";
 
-function AllArticles({ setTopic }) {
+function AllArticles({ topic, setTopic }) {
   const {
     loading,
     error,
@@ -28,7 +28,7 @@ function AllArticles({ setTopic }) {
   return (
     <>
       <div>
-        <SearchQueries setTopic={setTopic} />
+        <SearchQueries setTopic={setTopic} topic={topic} />
       </div>
       <ul className="flex no-bullet-point">
         {allArticles.map((article) => {
