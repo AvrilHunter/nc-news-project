@@ -11,9 +11,11 @@ function TopicSearch({ setTopic }) {
     const newParams = new URLSearchParams(searchParams);
     if (event.target.value === "all") {
       newParams.delete("topic");
+      newParams.delete("p");
       setSearchParams(newParams);
     } else {
       setTopic(event.target.value);
+      newParams.delete("p");
       newParams.set("topic", event.target.value);
       setSearchParams(newParams);
     }

@@ -23,7 +23,7 @@ function useArticles() {
 
   useEffect(() => {
     loadingWrapper(() => {
-      let params = new URLSearchParams(searchParams);
+    let params = new URLSearchParams(searchParams);
      return getAllArticles(params)
         .then(({ articles, total_count }) => {
           setArticleCount(total_count);
@@ -37,7 +37,17 @@ function useArticles() {
     });
   }, [order, topic, sort_by, p, limit]);
 
-  return { loading, error, errMsg, errStatus, page, setPage, allArticles, articleCount }
+  return {
+    loading,
+    error,
+    errMsg,
+    errStatus,
+    page,
+    setPage,
+    allArticles,
+    articleCount,
+    setError,
+  };
 }
 
 export default useArticles

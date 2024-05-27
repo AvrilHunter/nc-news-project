@@ -1,6 +1,4 @@
 
-To Do 
-
 Further improvement notes
 
 https://coolors.co/264653-2a9d8f-e9c46a-f4a261-e76f51-de541e
@@ -12,7 +10,7 @@ UI - make a link change shadow when you hover over it.
 When click back from /articles/id should go to the all articles page
 Add in nav bar - home, search and post new article
 
-Make default comments limit 5
+Default comments limit 5
 
 Optimistic rendering - When you post a comment it renders as greyscale and then when it actually goes through it goes bright.
 
@@ -31,11 +29,9 @@ Styling - all articles bigger gap on the left than the right.
 Check user experience - comments currently adds a copy to the top of the original comments, rather than re-fetching them.
 Style the post article page further
 
-When you do Page = 3 and limit 20 it comes up with 404 error, when you change the number per page - should it refresh the page to 1 when you change the limit? 
-When this error has occured it should reset to zero. 
-
+When you do Page = 3 and limit 20 it comes up with 404 error, when you change the number per page - should it refresh the page to 1 when you change the limit.
+When this error has occurred it should reset to zero. 
 
 Click browser back should go back
 
 Clear search parameters in the header
-Keep the boxes selected as what you are looking at

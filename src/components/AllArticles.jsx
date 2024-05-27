@@ -1,10 +1,12 @@
 import ArticleThumbnail from "./ArticleThumbnail";
 import Loading from "./Loading";
-import Error from "./Error";
 import LoadMore from "./LoadMore";
 import useArticles from "../hooks/useArticles";
+import Error from "./Error";
+import { useNavigate } from "react-router-dom";
 
 function AllArticles() {
+  const navigate = useNavigate();
   const {
     loading,
     error,
@@ -14,6 +16,7 @@ function AllArticles() {
     setPage,
     allArticles,
     articleCount,
+    setError,
   } = useArticles();
 
   if (loading) {
@@ -21,7 +24,19 @@ function AllArticles() {
   }
 
   if (error) {
-    return <Error errMsg={errMsg} errStatus={errStatus} />;
+    return (
+      <>
+        <Error errMsg={errMsg} errStatus={errStatus} />
+        <button className="buttonDesign"
+          onClick={() => {
+            setError(false);
+            navigate("/");
+          }}
+        >
+          Go back
+        </button>
+      </>
+    );
   }
 
   return (
