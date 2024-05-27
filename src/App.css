@@ -172,14 +172,14 @@ select, input{
   margin: 10px;
 }
 
-.comment-valid {
+.input-valid {
   border-radius: 5px;
   border: 1px solid #264653;
   width:100%;
   height: 3rem;
 }
 
-.comment-invalid{
+.input-invalid{
   border-radius: 5px;
   border: 1px solid red;
   width:100%;
