@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function Expandable({ children }) {
-  const [showing, setShowing] = useState(true);
+function Expandable({ children, defaultText, secondText, open }) {
+  const [showing, setShowing] = useState(open);
 
   const handleClick = () => {
     setShowing(!showing);
@@ -10,7 +10,7 @@ function Expandable({ children }) {
   return (
     <div className="expandable">
       <button onClick={handleClick} className="buttonDesign">
-        {showing ? "Hide Comments" : "Show Comments"}
+        {showing ? defaultText : secondText}
       </button>
       {showing && children}
     </div>
@@ -18,3 +18,7 @@ function Expandable({ children }) {
 }
 
 export default Expandable;
+
+// {
+//   children, text, secondText;
+// }

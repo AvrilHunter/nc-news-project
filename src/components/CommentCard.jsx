@@ -20,7 +20,7 @@ function CommentCard({ comment, setComments, article, setArticle }) {
       : setDeleteButtonAvailable("hiddenButton");
   }, []);
 
-  const handleClick = (event) => {
+  const handleDeleteOnClick = (event) => {
     event.preventDefault();
     setLoading(true);
     deleteComment(comment.comment_id)
@@ -60,7 +60,7 @@ function CommentCard({ comment, setComments, article, setArticle }) {
         <p> {author}</p>
         <p>{votes} votes</p>
         <p>{created_at}</p>
-        <button className={deleteButtonAvailable} onClick={handleClick}>
+        <button className={deleteButtonAvailable} onClick={handleDeleteOnClick}>
           Delete
         </button>
       </strong>

@@ -3,7 +3,13 @@ import { UserContext } from "../../context/UserContext";
 import { postCommentByArticle } from "../../apis";
 import Error from "./Error";
 
-function CommentPost({ article_id, setComments, comments }) {
+function CommentPost({
+  article_id,
+  setComments,
+  comments,
+  setArticle,
+  article,
+}) {
   const user = useContext(UserContext);
   const [error, setError] = useState(null);
   const [errMsg, setErrMsg] = useState("");
@@ -29,6 +35,11 @@ function CommentPost({ article_id, setComments, comments }) {
             username: user,
             body: "",
           });
+          const newArticle = {
+            ...article,
+            comment_count: article.comment_count + 1,
+          };
+          setArticle(newArticle);
         })
         .catch((err) => {
           setErrMsg(err.response.data.message);
@@ -42,43 +53,6 @@ function CommentPost({ article_id, setComments, comments }) {
     return <Error errMsg={errMsg} errStatus={errStatus} />;
   }
 
-  if (!isCommentValid) {
-    return (
-      <div className="add-comment-form">
-        <form
-          onSubmit={(event) => {
-            handleSubmit(event);
-          }}
-        >
-          <label htmlFor="comment">
-            <strong>Add a comment</strong>{" "}
-          </label>
-          <input
-            id="comment"
-            className={isCommentValid ? "comment-valid" : "comment-invalid"}
-            type="text"
-            placeholder="Your comment here...."
-            value={newComment.body}
-            onChange={(e) => {
-              setNewComment({ username: user, body: e.target.value });
-              e.target.value === ""
-                ? setValidComment(false)
-                : setValidComment(true);
-            }}
-          ></input>
-          <p>Please add a comment to post!</p>
-          <button
-            className="buttonDesign"
-            type="submit"
-            disabled={buttonDisabled}
-          >
-            Post
-          </button>
-        </form>
-      </div>
-    );
-  }
-
   return (
     <div className="add-comment-form">
       <form
@@ -86,12 +60,10 @@ function CommentPost({ article_id, setComments, comments }) {
           handleSubmit(event);
         }}
       >
-        <label htmlFor="comment">
-          <strong>Add a comment</strong>{" "}
-        </label>
+        <label htmlFor="comment">{/* <strong>Add a comment</strong> */}</label>
         <input
           id="comment"
-          className={isCommentValid ? "comment-valid" : "comment-invalid"}
+          className={isCommentValid ? "input-valid" : "input-invalid"}
           type="text"
           placeholder="Your comment here...."
           value={newComment.body}
@@ -102,6 +74,7 @@ function CommentPost({ article_id, setComments, comments }) {
               : setValidComment(true);
           }}
         ></input>
+        {isCommentValid ? null : <p>Please add a comment to post</p>}
         <button
           className="buttonDesign"
           type="submit"
