@@ -59,14 +59,18 @@ function CommentCard({ comment, setComments, article, setArticle }) {
   return (
     <li className="comment-card">
       <p>{body}</p>
-      <strong className="flex-comments">
+      <div className="grid-comments">
         <p> {author}</p>
-        <Votes item={singleComment} setItem={setSingleComment} type={"comments"} />
+        <Votes
+          item={singleComment}
+          setItem={setSingleComment}
+          type={"comments"}
+        />
         <p>{created_at}</p>
         <button className={deleteButtonAvailable} onClick={handleDeleteOnClick}>
           Delete
         </button>
-      </strong>
+      </div>
     </li>
   );
 }
