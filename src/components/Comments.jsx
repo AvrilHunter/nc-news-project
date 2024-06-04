@@ -18,10 +18,7 @@ function Comments({ article, setArticle }) {
   const [errStatus, setErrStatus] = useState("");
   const [page, setPage] = useState(1);
   const [searchParams] = useSearchParams();
-  // const [totalCommentCount, setTotalCommentCount] = useState(
-  //   article.comment_count
-  // );
-
+  
   const totalCommentCount = article.comment_count;
 
   let params = new URLSearchParams(searchParams);

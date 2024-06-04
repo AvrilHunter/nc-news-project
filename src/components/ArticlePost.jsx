@@ -9,7 +9,7 @@ import ArticleThumbnail from "./ArticleThumbnail";
 
 function ArticlePost() {
   const user = useContext(UserContext);
-  const [allTopics, loading] = useTopics(); //didn't bring in this error messaging.
+  const [allTopics, loading] = useTopics();
   const [newArticle, setNewArticle] = useState({
     author: user,
     topic: "",

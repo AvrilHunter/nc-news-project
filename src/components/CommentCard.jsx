@@ -3,6 +3,8 @@ import { UserContext } from "../../context/UserContext";
 import { deleteComment } from "../../apis";
 import { getCommentsByArticle } from "../../apis";
 import Loading from "./Loading";
+import Error from "./Error";
+import Votes from "./Votes";
 
 function CommentCard({ comment, setComments, article, setArticle }) {
   const user = useContext(UserContext);
@@ -13,9 +15,10 @@ function CommentCard({ comment, setComments, article, setArticle }) {
   const [error, setError] = useState(null);
   const [errMsg, setErrMsg] = useState("");
   const [errStatus, setErrStatus] = useState("");
+  const [singleComment, setSingleComment] = useState(comment);
 
   useEffect(() => {
-    comment.author === user
+    singleComment.author === user
       ? setDeleteButtonAvailable("buttonDesign")
       : setDeleteButtonAvailable("hiddenButton");
   }, []);
@@ -23,9 +26,9 @@ function CommentCard({ comment, setComments, article, setArticle }) {
   const handleDeleteOnClick = (event) => {
     event.preventDefault();
     setLoading(true);
-    deleteComment(comment.comment_id)
+    deleteComment(singleComment.comment_id)
       .then(() => {
-        return getCommentsByArticle(comment.article_id);
+        return getCommentsByArticle(singleComment.article_id);
       })
       .then((comments) => {
         setComments(comments);
@@ -43,7 +46,7 @@ function CommentCard({ comment, setComments, article, setArticle }) {
       });
   };
 
-  const { votes, created_at, author, body } = comment;
+  const { created_at, author, body } = singleComment;
 
   if (loading) {
     return <Loading />;
@@ -58,7 +61,7 @@ function CommentCard({ comment, setComments, article, setArticle }) {
       <p>{body}</p>
       <strong className="flex-comments">
         <p> {author}</p>
-        <p>{votes} votes</p>
+        <Votes item={singleComment} setItem={setSingleComment} type={"comments"} />
         <p>{created_at}</p>
         <button className={deleteButtonAvailable} onClick={handleDeleteOnClick}>
           Delete

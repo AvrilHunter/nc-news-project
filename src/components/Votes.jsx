@@ -1,26 +1,47 @@
-import { updateVotesByArticle } from "../../apis";
+import { updateVotesByArticle, updateVotesByComment } from "../../apis";
 import { useState } from "react";
 
-function Votes({ setArticle, article }) {
-
+function Votes({ setItem, item, type }) {
   const [voted, setVoted] = useState({ upVote: false, downVote: false });
-  
-  const handleClick = (voteChange, direction) => {
-    const optimisticArticle = {
-      ...article,
-      votes: article.votes + voteChange,
+  let handleClick = "";
+
+  if (type === "articles") {
+    handleClick = (voteChange, direction) => {
+      const optimisticArticle = {
+        ...item,
+        votes: item.votes + voteChange,
+      };
+      setVoted({ ...voted, [direction]: !voted[direction] });
+      setItem(optimisticArticle);
+      updateVotesByArticle(item.article_id, voteChange)
+        .then((updatedArticle) => {
+          setItem(updatedArticle);
+        })
+        .catch(() => {
+          setVoted({ ...voted });
+          setItem({ ...item });
+        });
     };
-    setVoted({ ...voted, [direction]: !voted[direction] });
-    setArticle(optimisticArticle);
-    updateVotesByArticle(article.article_id, voteChange)
-      .then((updatedArticle) => {
-        setArticle(updatedArticle);
-      })
-      .catch(() => {
-        setVoted({ ...voted });
-        setArticle({...article});
-      });
-  };
+  }
+
+  if (type === "comments") {
+    handleClick = (voteChange, direction) => {
+      const optimisticComment = {
+        ...item,
+        votes: item.votes + voteChange,
+      };
+      setVoted({ ...voted, [direction]: !voted[direction] });
+      setItem(optimisticComment);
+      updateVotesByComment(item.comment_id, voteChange)
+        .then((updatedComment) => {
+          setItem(updatedComment);
+        })
+        .catch(() => {
+          setVoted({ ...voted });
+          setItem({ ...item });
+        });
+    };
+  }
 
   return (
     <div className="votes">
@@ -37,7 +58,7 @@ function Votes({ setArticle, article }) {
           alt="thumbs-down"
         />
       </button>
-      <p className="inline-block">{article.votes} votes</p>
+      <p className="inline-block">{item.votes} votes</p>
       <button
         className={voted.upVote ? "buttonUsed" : "buttonDesign"}
         onClick={() => {

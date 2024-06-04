@@ -5,27 +5,24 @@ import Comments from "./Comments";
 import Votes from "./Votes";
 import Loading from "./Loading";
 import Error from "./Error";
+import useLoading from "../hooks/useLoading";
+import useError from "../hooks/useError";
 
 function SingleArticle() {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [errMsg, setErrMsg] = useState("");
-  const [errStatus, setErrStatus] = useState("");
+
+  const [loading, loadingWrapper] = useLoading();
+  const [errorWrapper, error, errMsg, errStatus] = useError();
 
   useEffect(() => {
-    getArticleById(article_id)
-      .then((article) => {
-        setArticle(article);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-        setErrMsg(err.response.data.message);
-        setErrStatus(err.response.status);
-        setError(true);
+    loadingWrapper(() => {
+      return errorWrapper(() => {
+        return getArticleById(article_id).then((article) => {
+          setArticle(article);
+        });
       });
+    });
   }, []);
 
   const {
@@ -57,7 +54,7 @@ function SingleArticle() {
         <p className="date">Date posted: {created_at}</p>
         <p className="comment_count">{comment_count} comments</p>
         <div className="span-two-columns">
-          {<Votes setArticle={setArticle} article={article} />}
+          <Votes setItem={setArticle} item={article} type={"articles"} />
         </div>
       </div>
       <Comments article={article} setArticle={setArticle} />
