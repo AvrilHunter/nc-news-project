@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import TopicSearch from "./TopicSearch";
 
-function SearchQueries({ setTopic, }) {
+function SearchQueries({ setTopic }) {
   const [searchParams, setSearchParams] = useSearchParams({});
 
   const onChangeHandler = (event) => {
@@ -29,7 +29,7 @@ function SearchQueries({ setTopic, }) {
       newParams.set("limit", event.target.value);
       setSearchParams(newParams);
     }
-  }
+  };
 
   return (
     <>
