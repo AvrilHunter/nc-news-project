@@ -1,8 +1,6 @@
 #root {
-  background-color: #effbf9;
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
-  /* font-weight: 20px; */
   font-style: normal;
   font-size: 100%;
   color: #264653;
@@ -83,7 +81,7 @@ a:visited {
 }
 
 h1 {
-  color: #bbd0e3;
+  color: #f1f5f9;
   text-align: center;
   font-size: 3rem;
 }
@@ -134,6 +132,7 @@ input {
 .buttonDesign:disabled {
   color: #e9c46a;
   background-color: #595959;
+  visibility: hidden;
 }
 
 .comment-card {
