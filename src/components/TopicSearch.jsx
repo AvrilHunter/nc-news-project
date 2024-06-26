@@ -22,7 +22,16 @@ function TopicSearch({ setTopic }) {
   };
 
   if (loading) {
-    return <Loading />;
+    return (
+      <form className="loading-form">
+        <label htmlFor="loading" hidden>
+          Loading...{" "}
+        </label>
+        <select id="loading" name="loading" aria-label="loading">
+          <option value="">Loading...</option>
+        </select>
+      </form>
+    );
   }
 
   if (error) {
@@ -30,7 +39,7 @@ function TopicSearch({ setTopic }) {
   }
 
   return (
-    <>
+    <div>
       <label htmlFor="choose-topic"></label>
       <select
         id="choose-topic"
@@ -51,7 +60,7 @@ function TopicSearch({ setTopic }) {
           );
         })}
       </select>
-    </>
+    </div>
   );
 }
 
